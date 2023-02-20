@@ -28,11 +28,11 @@ chosen_num = random.randint (1,100)
     elif 6 <= chosen_num <= 36:
             chosen = "donkey"
             balance -= 1
-            # The token is either a horse or zebra...
-            # #in both cases, subtract $0.50 from the balance 
+    # The token is either a horse or zebra...
+    # #in both cases, subtract $0.50 from the balance
     else:
-            # if the number is even, set the ohosen
-            #item to a horse
+        # if the number is even, set the ohosen
+        #item to a horse
             if chosen_num % 2 == 0:
                 chosen = "horse"
 
@@ -41,7 +41,13 @@ chosen_num = random.randint (1,100)
                 chosen= "zebra"
             balance -= 0.5
 
+    print("you got a {. your balance is "
+          "${:.2f}".format(chosen, balance))
+
+
     if balance < 1:
+        #if balance is too low, exit the game and
+        #output a suitable message
             play_again = "xxx"
             print("sorry you have run out of money")
     else:
