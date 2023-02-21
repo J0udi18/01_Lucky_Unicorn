@@ -46,7 +46,22 @@ def num_check (question, low, high):
             print (error)
 
 
+def statement_generator(statement, decoration):
+
+            sides = decoration * 3
+
+            statement = "{} {} {}".format(sides, statement, sides)
+            top_bottom = decoration * len(statement)
+
+            print(top_bottom)
+            print(statement)
+            print(top_bottom)
+
+            return ""
+
+
 # Main Routine goes here...
+statement_generator("welcome to the Lucky Unicorn Game", "*")
 played_before = yes_no ("Have you played the game before? ")
 
 if played_before == "no":
@@ -79,12 +94,14 @@ while play_again == "":
     # users gets a unicorn (add $4 to balance)
     if 1 <= chosen_num <= 5:
         chosen = "unicorn"
+        decoration = "!"
         balance += 4
 
         # if the random # is between 6 and 36
     # users gets a donkey (subtract $1 from balance)
     elif 6 <= chosen_num <= 36:
         chosen = "donkey"
+        prize_decoration = "D"
         balance -= 1
     # The token is either a horse or zebra...
     # #in both cases, subtract $0.50 from the balance
@@ -93,14 +110,18 @@ while play_again == "":
         # item to a horse
         if chosen_num % 2 == 0:
             chosen = "horse"
+            prize_decoration = "H"
 
         # otherwise set it to a zebra
         else:
             chosen = "zebra"
+            prize_decoration = "Z"
         balance -= 0.5
 
-    print("you got a {}. your balance is "
-          "${:.2f}".format(chosen, balance))
+    outcome= "you got a {}. your balance is " \
+             "${:.2f}".format(chosen, balance)
+
+    statement_generator(outcome, prize_decoration)
 
     if balance < 1:
         # if balance is too low, exit the game and
