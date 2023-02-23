@@ -1,7 +1,8 @@
 import random
 
+
 # Function go here...
-def yes_no (question) :
+def yes_no(question):
     valid = False
     while not valid:
         response = input(question).lower()
@@ -18,20 +19,22 @@ def yes_no (question) :
             print("please answer yes / no")
 
 
-def instructions () :
-       print("**** How to play ****")
-       print()
-       print("The rules of the game go here")
-       print()
-       return ""
+# displays instructions, returns 'None'
+def instructions():
+    print("**** How to play ****")
+    print()
+    print("The rules of the game go here")
+    print()
+    return ""
 
 
-def num_check (question, low, high):
+# checks users enter a number between two integers
+def num_check(question, low, high):
     error = "please enter an whole number between 1 and 10\n"
 
     valid = False
     while not valid:
-        try:                
+        try:
             # ask the question
             response = int(input(question))
             # if the amount is too low / too high give
@@ -43,36 +46,38 @@ def num_check (question, low, high):
                 print(error)
 
         except ValueError:
-            print (error)
+            print(error)
 
 
-def statement_generator(statement, decoration):
+def statement_generator(statement, var_decoration, lines=None):
+    sides = var_decoration * 3
 
-            sides = decoration * 3
+    statement = "{} {} {}".format(sides, statement, sides)
+    top_bottom = var_decoration * len(statement)
 
-            statement = "{} {} {}".format(sides, statement, sides)
-            top_bottom = decoration * len(statement)
+    if lines == 1:
+        print(statement)
+    else:
+        print(top_bottom)
+        print(statement)
+        print(top_bottom)
 
-            print(top_bottom)
-            print(statement)
-            print(top_bottom)
-
-            return ""
+    return ""
 
 
 # Main Routine goes here...
 statement_generator("welcome to the Lucky Unicorn Game", "*")
-played_before = yes_no ("Have you played the game before? ")
+played_before = yes_no("Have you played the game before? ")
 
 if played_before == "no":
-        instructions ()
+    instructions()
 
 print()
 
 # Ask user how much they want to play with...
 # Main routine goe here
 how_much = num_check("How much would you"
-                   "like to play with? ", 0, 10)
+                     "like to play with? ", 0, 10)
 
 balance = how_much
 
@@ -118,19 +123,22 @@ while play_again == "":
             prize_decoration = "Z"
         balance -= 0.5
 
-    outcome= "you got a {}. your balance is " \
-             "${:.2f}".format(chosen, balance)
+    outcome = "you got a {}. your balance is " \
+              "${:.2f}".format(chosen, balance)
 
-    statement_generator(outcome, prize_decoration)
+    statement_generator(outcome, prize_decoration, 1)
 
     if balance < 1:
         # if balance is too low, exit the game and
         # output a suitable message
         play_again = "xxx"
         print("sorry you have run out of money")
+
     else:
         play_again = input("Press Enter to play again "
                            "or 'xxx' to quit")
 
 print()
+print(f'final balance: ${balance:.2f}')
 print("final balance", balance)
+print("thank you for playing")
