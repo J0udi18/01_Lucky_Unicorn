@@ -85,7 +85,7 @@ rounds_played = 0
 
 play_again = input("press <Enter> to play...").lower()
 while play_again == "":
-    # inorease # of rounds played
+    # increase # of rounds played
     rounds_played += 1
 
     # print round number
@@ -111,7 +111,7 @@ while play_again == "":
     # The token is either a horse or zebra...
     # #in both cases, subtract $0.50 from the balance
     else:
-        # if the number is even, set the ohosen
+        # if the number is even, set the chosen
         # item to a horse
         if chosen_num % 2 == 0:
             chosen = "horse"
